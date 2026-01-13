@@ -106,6 +106,7 @@ const Index = () => {
   const [selectedHandover, setSelectedHandover] = useState<Handover | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
   const columns: HandoverStatus[] = ['new', 'coordination', 'procurement', 'warehouse', 'in-progress', 'completed'];
 
@@ -145,7 +146,7 @@ const Index = () => {
                   <Icon name="List" size={16} />
                 </Button>
               </div>
-              <Button className="bg-primary hover:bg-primary/90">
+              <Button className="bg-primary hover:bg-primary/90" onClick={() => setIsCreateDialogOpen(true)}>
                 <Icon name="Plus" size={18} />
                 <span className="ml-2">Создать хэндовер</span>
               </Button>
@@ -424,6 +425,69 @@ const Index = () => {
               </div>
             </>
           )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Создать новый хэндовер</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4 mt-4">
+            <div>
+              <label className="text-sm font-medium text-gray-900 mb-2 block">Клиент</label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Выберите клиента" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">ООО "Строймаш" (7701234567)</SelectItem>
+                  <SelectItem value="2">АО "ГорТех" (7702345678)</SelectItem>
+                  <SelectItem value="3">ЗАО "Металлург" (7703456789)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-900 mb-2 block">Техника</label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Выберите технику" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">Экскаватор CAT 320 (CAT320DL12345)</SelectItem>
+                  <SelectItem value="2">Бульдозер Komatsu D65 (KMT65PX67890)</SelectItem>
+                  <SelectItem value="3">Погрузчик Volvo L120 (VLV120HL11223)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium text-gray-900 mb-2 block">Дата начала</label>
+                <Input type="date" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-900 mb-2 block">Дата окончания</label>
+                <Input type="date" />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-900 mb-2 block">Комментарий</label>
+              <Input placeholder="Дополнительная информация..." />
+            </div>
+          </div>
+
+          <div className="flex justify-end gap-2 mt-6 pt-4 border-t">
+            <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+              Отмена
+            </Button>
+            <Button className="bg-primary hover:bg-primary/90" onClick={() => setIsCreateDialogOpen(false)}>
+              Создать
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
