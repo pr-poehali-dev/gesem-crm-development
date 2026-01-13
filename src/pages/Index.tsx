@@ -122,47 +122,8 @@ const Index = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      <aside className="w-64 bg-white border-r border-gray-200">
-        <div className="p-6">
-          <div className="flex items-center gap-2 mb-8">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">G</span>
-            </div>
-            <span className="font-semibold text-lg text-gray-900">GESEM CRM</span>
-          </div>
-
-          <nav className="space-y-1">
-            <Button variant="ghost" className="w-full justify-start bg-blue-50 text-primary hover:bg-blue-100 hover:text-primary">
-              <Icon name="LayoutDashboard" size={18} />
-              <span className="ml-3">Хэндоверы</span>
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:bg-gray-100">
-              <Icon name="Users" size={18} />
-              <span className="ml-3">Клиенты</span>
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:bg-gray-100">
-              <Icon name="Truck" size={18} />
-              <span className="ml-3">Техника</span>
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:bg-gray-100">
-              <Icon name="CheckSquare" size={18} />
-              <span className="ml-3">Задачи</span>
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:bg-gray-100">
-              <Icon name="Mail" size={18} />
-              <span className="ml-3">Переписка</span>
-            </Button>
-            <Button variant="ghost" className="w-full justify-start text-gray-700 hover:bg-gray-100">
-              <Icon name="BarChart3" size={18} />
-              <span className="ml-3">Аналитика</span>
-            </Button>
-          </nav>
-        </div>
-      </aside>
-
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <header className="bg-white border-b border-gray-200 px-6 py-4">
+    <div className="space-y-6">
+      <div className="bg-white border-b border-gray-200 px-6 py-4 -m-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-2xl font-semibold text-gray-900">Хэндоверы</h1>
             <div className="flex items-center gap-3">
@@ -216,9 +177,9 @@ const Index = () => {
               <Icon name="SlidersHorizontal" size={18} />
             </Button>
           </div>
-        </header>
+      </div>
 
-        <div className="flex-1 overflow-auto p-6">
+      <div>
           {viewMode === 'kanban' ? (
             <div className="flex gap-4 h-full">
               {columns.map((status) => {
@@ -343,8 +304,7 @@ const Index = () => {
               ))}
             </div>
           )}
-        </div>
-      </main>
+      </div>
 
       <Dialog open={!!selectedHandover} onOpenChange={(open) => !open && setSelectedHandover(null)}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
