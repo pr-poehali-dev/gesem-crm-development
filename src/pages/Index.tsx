@@ -164,7 +164,7 @@ const Index = () => {
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Статус" />
+                <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Все статусы</SelectItem>
